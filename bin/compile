@@ -70,10 +70,12 @@ install_meteor() {
 build() {
   (
     cd $BUILD_DIR
+    status "Installing dependencies"
+    meteor npm i --production
     status "Building meteor bundle"
     meteor build --directory deploy --server-only
     cd deploy/bundle/programs/server
-    status "Installing npm dependencies"
+    status "Installing bundle dependencies"
     npm install 2>&1 | indent
     mv $BUILD_DIR/.vendor $BUILD_DIR/vendor
   )
