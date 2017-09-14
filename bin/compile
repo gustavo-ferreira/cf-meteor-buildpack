@@ -74,10 +74,16 @@ build() {
     meteor npm i --production
     status "Building meteor bundle"
     meteor build --directory deploy --server-only
-    cd deploy/bundle/programs/server
+  )
+}
+
+install_app() {
+  (
+    echo $PATH
+    cd $BUILD_DIR/programs/server
     status "Installing bundle dependencies"
     npm install 2>&1 | indent
-    mv $BUILD_DIR/.vendor $BUILD_DIR/vendor
+    #mv $BUILD_DIR/.vendor $BUILD_DIR/vendor
   )
 }
 
@@ -85,8 +91,7 @@ build() {
 [ ! -d $CACHE_DIR ] && mkdir $CACHE_DIR
 
 install_node
-install_meteor
-build
+install_app
 
 status "Checking for post_compile script"
 if [ -f $BUILD_DIR/bin/post_compile ] ; then

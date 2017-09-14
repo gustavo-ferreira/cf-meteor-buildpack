@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f $1/.meteor/release ]; then
+if [ -f $1/.meteor/release ] || [ -f $1/star.json ]; then
   echo "Meteor" && exit 0
 else
   echo "no" && exit 1
