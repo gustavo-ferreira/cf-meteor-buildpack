@@ -88,7 +88,7 @@ install_app() {
     echo $PATH
     cd $BUILD_DIR/programs/server
     status "Installing bundle dependencies"
-    npm install 2>&1 | indent
+    npm install
     #mv $BUILD_DIR/.vendor $BUILD_DIR/vendor
   )
 }
