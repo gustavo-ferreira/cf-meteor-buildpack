@@ -39,6 +39,12 @@ install_node() {
   PATH=$BUILD_DIR/.vendor/node/bin:$PATH
 }
 
+update_npm() {
+  status "Updating NPM"
+  npm install -g npm@3
+  status "Installed NPM version: $(npm -v)"
+}
+
 install_meteor() {
   if [ -f "$METEOR_HOME/usr/bin/meteor" ] ; then
     status "Skipping Meteor installation. Already installed."
@@ -91,6 +97,7 @@ install_app() {
 [ ! -d $CACHE_DIR ] && mkdir $CACHE_DIR
 
 install_node
+update_npm
 install_app
 
 status "Checking for post_compile script"
