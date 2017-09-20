@@ -25,11 +25,11 @@ extract_root_url() {
   echo "ROOT_URL: $ROOT_URL"
 }
 
-extract_mongo_url
-extract_root_url
+#extract_mongo_url
+#extract_root_url
 
 cat <<-YAML
 ---
 default_process_types:
-  web: MONGO_URL=$MONGO_URL ROOT_URL=$ROOT_URL $BUILD_DIR/.vendor/node/bin/node $BUILD_DIR/main.js
+  web: $BUILD_DIR/.vendor/node/bin/node $BUILD_DIR/main.js
 YAML
